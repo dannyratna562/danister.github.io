@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: light only;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>AI Across the Full Engineering Stack — From Code to the C-Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    color-scheme: light only;
+    --ink: #0d0d0d;
+    --ink-light: #3a3a3a;
+    --ink-muted: #909090;
+    --paper: #ffffff;
+    --accent: #1a1a1a;
+    --accent-soft: #f4f4f4;
+    --rule: #e8e8e8;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    color: #0d0d0d !important;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+  }
+
+  /* Meta */
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 56px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-family: 'Source Serif 4', serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--ink-muted);
+  }
+
+  /* Title block */
+  .title-block {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(36px, 6vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 21px;
+    color: var(--ink-light);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* Drop cap handled above */
+
+  /* Body text */
+  p {
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+
+  p + p {
+    text-indent: 0;
+  }
+
+  /* Section headers */
+  .section {
+    margin-top: 64px;
+    margin-bottom: 32px;
+  }
+
+  .section-number {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #888;
+    font-family: 'Source Serif 4', serif;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .pull-quote {
+    margin: 48px 0;
+    padding: 32px 0 32px 28px;
+    border-left: 3px solid #1a1a1a;
+    background: transparent;
+  }
+
+  .reading-badge {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-family: 'Source Serif 4', serif;
+  }
+
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.75;
+    margin: 8px 8px 0 0;
+    color: #1a1a1a;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink-light);
+    margin: 0;
+    text-indent: 0;
+  }
+
+  /* Closing */
+  .closing {
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .closing h2 {
+    font-size: 28px;
+  }
+
+  /* Rule ornament */
+  .ornament {
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: 18px;
+    letter-spacing: 0.4em;
+    margin: 48px 0;
+    opacity: 0.5;
+  }
+
+  /* Reading badge handled above */
+
+  /* Fade in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page > * {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .title-block { animation-delay: 0.1s; }
+  .drop-cap    { animation-delay: 0.2s; }
+
+  @media (max-width: 600px) {
+    body { font-size: 18px; }
+    .page { padding: 48px 24px 80px; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#f8f7f4;border-bottom:1px solid rgba(0,0,0,0.08);position:sticky;top:0;z-index:100;">
+  <div style="max-width:680px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;">
+    <a href="index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:16px;letter-spacing:-0.5px;color:#0f0f0f;text-decoration:none;">Danister.</a>
+    <a href="index.html#writing" style="font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#717171;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#0f0f0f'" onmouseout="this.style.color='#717171'">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to portfolio
+    </a>
+  </div>
+</div>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
+
+<div class="page">
+
+  <div class="meta">
+    <span>Engineering</span>
+    <span class="meta-dot"></span>
+    <span>AI &amp; Leadership</span>
+    <span class="meta-dot"></span>
+    <span class="reading-badge">6 min read</span>
+  </div>
+
+  <div class="title-block">
+    <h1>AI Across the Full Engineering Stack. From Code to the C-Suite.</h1>
+    <p class="subtitle">A practical look at AI's impact across building, debugging, documentation, and engineering leadership. From someone who's been in the middle of it.</p>
+  </div>
+
+  <p class="drop-cap">I'll be honest. I didn't think the management layer would be where AI surprised me most. When I first started using it seriously, the value proposition was obvious and narrow: write code faster, get unstuck faster, ship faster. That was enough to pay attention. But the moment that changed everything for me wasn't a coding session. It was when I ran a single prompt across multiple MCP integrations and got a cross-team metrics evaluation that would have taken me hours to assemble manually. That's when I stopped thinking about AI as a tool and started thinking about it as infrastructure. And the first casualty of that shift? My confidence in off-the-shelf software.</p>
+
+  <p>I'm an Engineering Manager leading a tribe of 12 engineers across fintech products, influencing four other squads across the wider organisation. Over the past year, AI has touched nearly every part of how I work. From the way my engineers write and debug code, to how I run sprint planning, manage performance, and communicate with senior stakeholders. What follows is an honest breakdown of where I've seen it matter most.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <span class="section-number">01</span>
+    <h2>Building. Agentic AI and the New Developer Workflow</h2>
+  </div>
+
+  <p>The coding story is well-documented by now, so I'll be specific about what's actually changed. Agentic AI. Tools that don't just suggest code but plan, scaffold, and execute across a codebase. It has fundamentally shifted what a single engineer can hold in their head at once.</p>
+
+  <p>The biggest shift isn't speed. It's confidence. Engineers are attempting things they'd previously have scoped as two-sprint efforts. Complex integrations, framework migrations, new service scaffolds. The barrier between "I think I can do this" and "I'll start today" has collapsed. When the AI can handle the boilerplate, the research, and the first-pass implementation, engineers get to spend their cognitive budget on the decisions that actually require judgment.</p>
+
+  <p>What I've also noticed is that junior engineers are closing the gap faster. Not because AI is doing their thinking, but because they can get immediate, contextual feedback on their work rather than waiting for a code review cycle. The feedback loop has compressed in a way that accelerates growth.</p>
+
+  <div class="pull-quote">
+    <p>"The barrier between 'I think I can do this' and 'I'll start today' has collapsed."</p>
+  </div>
+
+  <p>The risk, which I'll name plainly: engineers who don't develop the instinct to validate AI output are building on sand. Speed is meaningless if the foundation is wrong. Good AI-augmented engineering still requires a sharp engineer. It just requires less of their time on the tedious parts.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <span class="section-number">02</span>
+    <h2>Debugging and Observability. From Reactive to Investigative</h2>
+  </div>
+
+  <p>Debugging has traditionally been the most exhausting part of engineering. Not because it's hard in theory, but because it's unpredictable in practice. You don't know how deep the rabbit hole goes until you're already in it at 11pm.</p>
+
+  <p>AI changes the shape of that problem in two meaningful ways. The first is in triage. Feeding logs, traces, and error patterns into an AI that can surface likely root causes faster than a human scanning line by line. The second, and more significant, is scheduled investigation. One use case we're actively exploring: automating pre-emptive analysis, systems that surface anomalies before they become incidents, rather than after an engineer gets paged. Early signals are promising.</p>
+
+  <p>If this plays out the way we expect, it would translate directly into a reduction in reactive on-call burden. Engineers who are currently in a cycle of being woken up, investigating, patching, and documenting could operate in a more sustainable rhythm. The system does the first pass. The engineer reviews and acts. That distinction would matter enormously for team health and retention.</p>
+
+  <p>The observability space in particular is where I think AI will have its most underrated impact. The data was always there. In the logs, in the traces, in the metrics. What was missing was the bandwidth to interrogate it continuously. AI provides that bandwidth.</p>
+
+  <div class="pull-quote">
+    <p>"Giving AI access to production environments is powerful and risky in equal measure. Getting that balance right is one of the more interesting challenges ahead."</p>
+  </div>
+
+  <p>That said, connecting AI to live systems raises real questions worth sitting with. How do you scope permissions correctly? How do you ensure a misworded prompt doesn't trigger something irreversible in a production environment? How do you restrict access in a way that preserves the value without introducing new risk? These aren't reasons to avoid it. They're interesting challenges to design around, and the teams that get this right early will have a meaningful advantage.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <span class="section-number">03</span>
+    <h2>Documentation and Knowledge. The Work That Always Got Deprioritised</h2>
+  </div>
+
+  <p>Documentation is the perennial casualty of delivery pressure. It's not that engineers don't value it. It's that it sits at the end of the sprint, after the thing that just shipped, and before the next thing that needs to start. It gets squeezed.</p>
+
+  <p>AI has changed my relationship with this problem in a practical way: the cost of producing good documentation has dropped dramatically. Runbooks, API specs, onboarding guides, ways-of-working documents. Things that would previously require a dedicated block of focused writing time can now be drafted, structured, and iterated in a fraction of the time.</p>
+
+  <p>More importantly, knowledge transfer. One of the most fragile parts of any engineering organisation. It becomes more resilient. When an engineer leaves or moves squads, the risk of taking undocumented context with them is real. AI-assisted documentation, done consistently, starts to close that gap. It's not perfect, but it's meaningfully better than the alternative.</p>
+
+  <p>The cultural shift required here is small but important: engineers need to see documentation as a first-class output, not an afterthought. AI makes that easier to justify. The effort is lower, the output is higher quality, and the argument for doing it is harder to dismiss.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <span class="section-number">04</span>
+    <h2>Leadership and Delivery. Where the Real Surprise Was</h2>
+  </div>
+
+  <p>This is where my perspective diverges from most AI-in-engineering articles, which tend to stop at the individual contributor layer. The impact on engineering leadership. On planning, performance management, stakeholder communication, and delivery. That's where I've seen the most unexpected value.</p>
+
+  <p>The clearest example: evaluating team metrics. Across six squads, with data sitting in Jira, LinearB, and Azure DevOps, getting a coherent picture of engineering health used to require either significant manual aggregation or a dedicated analytics effort. Now, with MCP integrations and a well-constructed prompt, I can pull cycle times, deployment frequency, incident trends, and story point distribution across all squads in a single workflow. What used to take hours of context-switching takes minutes.</p>
+
+  <p>Stakeholder communication has also shifted. Writing an executive summary, a vendor performance review, or a structured proposal for a new initiative. These are tasks that require clear thinking first, but the drafting itself no longer takes the time it used to. I can focus on the judgment. What to say, what to emphasise, what to leave out. And let the execution follow quickly.</p>
+
+  <p>Another example that's hard to ignore: CapEx/OpEx reporting. Pulling engineer activity data through integrations, applying internal and external costing models, and calculating the split between capital and operational expenditure used to be a manual, time-consuming exercise. Now, with the right prompt and the right connections in place, that monthly report for finance is ready in minutes. One prompt. Every month. Done.</p>
+
+  <p>Planning and estimation have become more grounded. When I can query historical velocity data, surface patterns in past sprint performance, and model capacity scenarios quickly, the planning conversation becomes more honest and less instinct-based. That makes it better for the team and better for the business.</p>
+
+  <div class="pull-quote">
+    <p>"The impact on engineering leadership is where I've seen the most unexpected value. And where almost no one is talking."</p>
+  </div>
+
+  <p>But planning surfaces an interesting challenge of its own. When AI starts accelerating your team's output, historical velocity data becomes a less reliable baseline. If throughput has shifted significantly, past sprints are no longer a clean predictor of future ones. How do you rebase your planning model? How do you forecast with confidence when the inputs are changing? That's a question I'm actively working through. And one I'll be exploring in a separate post on how AI is reshaping story point estimation and what that means for planning at scale.</p>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <span class="section-number">Where I Land</span>
+    <h2>The Question I Keep Coming Back To</h2>
+  </div>
+
+  <p>Here's the thought I can't shake: what happens to off-the-shelf tools and SaaS products built around access to data?</p>
+
+  <p>If I can connect to my data directly. Via APIs, via MCPs. And shape it exactly how I need it, for my workflow, my team, my context. Why would I spend months adapting to how a vendor thinks I should work? The traditional value proposition of enterprise software was that it aggregated capability you couldn't build yourself. That proposition is weakening.</p>
+
+  <p>I'm not saying every tool becomes redundant. But I think the tools that survive will be the ones that do something genuinely irreplaceable. Not just the ones that sit between you and your data.</p>
+
+  <p>There are threads here I haven't fully pulled yet. How AI access to production systems should be governed. How story point estimation works when AI is doing part of the work. How you forecast delivery when your team's velocity baseline has fundamentally shifted. These are interesting challenges. And they deserve their own space. More on those soon.</p>
+
+  <p>AI hasn't just changed how my engineers write code. It's changed what questions I ask, how fast I can answer them, and what I expect from the systems I build and buy. That's a bigger shift than I anticipated. And I think we're still early.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <p style="color: var(--ink-muted); font-size: 16px; font-style: italic;">Danister is an Engineering Manager at Edenred UAE, leading multiple engineering squads across fintech products. He writes about engineering leadership, AI adoption, and building high-performing teams.</p>
+
+</div>
+<div style="max-width:680px;margin:0 auto;padding:40px 32px 60px;border-top:1px solid #e8e8e8;margin-top:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;">
+  <a href="index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#0f0f0f;text-decoration:none;">Danister.</a>
+  <a href="index.html#writing" style="font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#717171;text-decoration:none;display:inline-flex;align-items:center;gap:6px;" onmouseover="this.style.color='#0f0f0f'" onmouseout="this.style.color='#717171'">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to portfolio
+  </a>
+</div>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
+
+</body>
+</html>

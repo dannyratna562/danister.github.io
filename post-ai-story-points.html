@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: light only;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>AI Is Breaking Story Points. Here's What to Measure Instead.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    color-scheme: light only;
+    --ink: #0d0d0d;
+    --ink-light: #3a3a3a;
+    --ink-muted: #909090;
+    --paper: #ffffff;
+    --rule: #e8e8e8;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    color: #0d0d0d !important;
+  }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 20px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 56px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-family: 'Source Serif 4', serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--ink-muted);
+  }
+
+  .reading-badge {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #555;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-family: 'Source Serif 4', serif;
+  }
+
+  .title-block {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(36px, 6vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 21px;
+    color: var(--ink-light);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.75;
+    margin: 8px 8px 0 0;
+    color: #1a1a1a;
+  }
+
+  p {
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+
+  .section {
+    margin-top: 64px;
+    margin-bottom: 32px;
+  }
+
+  .section-number {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #888;
+    font-family: 'Source Serif 4', serif;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .pull-quote {
+    margin: 48px 0;
+    padding: 32px 0 32px 28px;
+    border-left: 3px solid #1a1a1a;
+    background: transparent;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink-light);
+    margin: 0;
+    text-indent: 0;
+  }
+
+  /* Analogy box */
+  .analogy-box {
+    margin: 48px 0;
+    padding: 36px 40px;
+    background: #f7f7f7;
+    border-radius: 4px;
+  }
+
+  .analogy-box .analogy-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #888;
+    font-family: 'Source Serif 4', serif;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .analogy-box p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+  }
+
+  .analogy-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .analogy-box strong {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .closing {
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: 18px;
+    letter-spacing: 0.4em;
+    margin: 48px 0;
+    opacity: 0.5;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page > * {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 18px; }
+    .page { padding: 48px 24px 80px; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#f8f7f4;border-bottom:1px solid rgba(0,0,0,0.08);position:sticky;top:0;z-index:100;">
+  <div style="max-width:680px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;">
+    <a href="index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:16px;letter-spacing:-0.5px;color:#0f0f0f;text-decoration:none;">Danister.</a>
+    <a href="index.html#writing" style="font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#717171;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#0f0f0f'" onmouseout="this.style.color='#717171'">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to portfolio
+    </a>
+  </div>
+</div>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
+
+<div class="page">
+
+  <div class="meta">
+    <span>Engineering</span>
+    <span class="meta-dot"></span>
+    <span>AI and Planning</span>
+    <span class="meta-dot"></span>
+    <span class="reading-badge">5 min read</span>
+  </div>
+
+  <div class="title-block">
+    <h1>AI Is Breaking Story Points. Here's What to Measure Instead.</h1>
+    <p class="subtitle">A simple theory on why your velocity looks strange, and what to track instead.</p>
+  </div>
+
+  <p class="drop-cap">Story points are one of those concepts that get used everywhere and understood inconsistently. Before we get into what AI does to them, it's worth making sure we're talking about the same thing. Because the confusion around story points is exactly what makes AI's impact on them so easy to misread.</p>
+
+  <p>This builds on a broader piece I wrote on AI's impact across the full engineering stack. If you haven't read that one, it's a good place to start.</p>
+
+  <div class="section">
+    <span class="section-number">First</span>
+    <h2>What Story Points Actually Mean</h2>
+  </div>
+
+  <p>Story points are not time. They are not hours. They are not a measure of how long something will take. They are a measure of complexity, relative to other work your team has done before.</p>
+
+  <p>When a team estimates a ticket at 3 story points, they are saying: this feels about as complex as the other things we've called 3. The smallest possible change your team could make becomes the anchor. Call it 1. Something more involved than that is a 3. Something that requires significant thought, coordination, or unknowns is a 5 or an 8. You're not predicting hours. You're comparing problems.</p>
+
+  <p>This is important because it means story points are relative to your team, your codebase, and your current capabilities. Change any of those variables significantly, and the scale needs to recalibrate. Most teams don't think about this until something forces them to. AI is one of those things.</p>
+
+  <div class="pull-quote">
+    <p>"Story points are not time. They are a measure of complexity, relative to other work your team has done before."</p>
+  </div>
+
+  <div class="ornament">· · ·</div>
+
+  <div class="section">
+    <span class="section-number">The Theory</span>
+    <h2>The Pins in the Dark Room</h2>
+  </div>
+
+  <div class="analogy-box">
+    <span class="analogy-label">An analogy</span>
+    <p>You have a box filled with various items. Your task is to find 10 pins hidden inside it. The catch: you have to do it in a completely dark room.</p>
+    <p>How complex is that task? Let's call it <strong>3 story points.</strong></p>
+    <p>Now you are handed a torch.</p>
+    <p>Same box. Same pins. Same room. But the complexity of the task has fundamentally changed. What was a 3 is now less than 1. <strong>The torch is AI.</strong></p>
+  </div>
+
+  <p>This is the simplest way I can put it. AI doesn't change the task. It changes how hard the task is to complete. And when the complexity of work reduces, the story points you would have assigned to that work reduce with it.</p>
+
+  <p>The implication for teams starting to use AI seriously is straightforward: your baseline shifts. The stories you used to anchor your scale at a 3 are now 1s. The things that were 5s start feeling like 3s. The entire scale recalibrates around your new capability.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <div class="section">
+    <span class="section-number">What You'll See</span>
+    <h2>The Velocity Illusion</h2>
+  </div>
+
+  <p>Here is what most teams observe when they start introducing AI into their engineering workflow, and why it can be confusing if you don't know what to expect.</p>
+
+  <p>In the early stages, you will likely see a spike in velocity. The team is picking up more story points per sprint than before. Leadership notices. It looks like a win. And it is, partly. But it is also a measurement artefact.</p>
+
+  <p>What's happening is that engineers are completing work faster, but the story point estimates haven't caught up yet. The scale hasn't recalibrated. You're still assigning old complexity scores to work that has become meaningfully easier. The velocity number goes up, but it's measuring the gap between old estimates and new capability, not a sustainable increase in output.</p>
+
+  <p>Over time, as teams groom with AI in mind, the baseline adjusts. A story that used to be a 3 gets estimated at 1. The velocity number comes back down to something closer to what it was before. Not because the team got slower. Because the measurement got more honest.</p>
+
+  <div class="pull-quote">
+    <p>"The velocity spike is real but temporary. What changes permanently is the baseline."</p>
+  </div>
+
+  <div class="ornament">· · ·</div>
+
+  <div class="section">
+    <span class="section-number">What Actually Changes</span>
+    <h2>Throughput Is the Number to Watch</h2>
+  </div>
+
+  <p>Once the baseline recalibrates, velocity tells you less than it used to. The number that starts to matter more is throughput. How many tickets is your team actually shipping per sprint?</p>
+
+  <p>This is where the real impact of AI shows up. Not in inflated story point totals, but in the volume of work that moves from to-do to done. Engineers who are unblocking faster, reviewing faster, and iterating faster are closing more tickets. That's the signal worth tracking.</p>
+
+  <p>This also creates a planning challenge. If your historical velocity data was built before AI adoption, it is no longer a clean baseline for forecasting. The assumptions baked into your sprint capacity planning, your quarterly roadmaps, your delivery commitments — all of them were built on a different version of your team's capability.</p>
+
+  <p>The honest answer is that you need to re-anchor. Give yourself a recalibration period. Run a few sprints with AI fully embedded, let the estimates settle, and build your new baseline from there. It's a short term disruption for a more accurate long term picture.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <div class="ornament">· · ·</div>
+
+  <div class="section">
+    <span class="section-number">For Leaders</span>
+    <h2>What This Means for Engineering Leaders</h2>
+  </div>
+
+  <p>Stop comparing velocity before and after AI adoption. You are not measuring the same thing anymore and the comparison will mislead you.</p>
+
+  <p>Reset your planning baselines. Give your team a recalibration window, let the estimates settle with AI embedded, and build your forecasts from the new normal rather than the old one.</p>
+
+  <p>Track flow metrics, not estimates. Cycle time, throughput, deployment frequency. These will tell you what is actually changing. Story points, for a period, will just tell you noise.</p>
+
+  <p>Expect temporary metric confusion and communicate it upward. If leadership sees velocity drop after AI adoption, they need context. The drop is not regression. It is honesty catching up with capability.</p>
+
+  <div class="closing">
+    <span class="section-number">Where to Look Next</span>
+    <h2>The Metrics That Will Actually Tell You Something</h2>
+  </div>
+
+  <p>Velocity and story points will give you a noisy signal during this transition. The metrics that cut through that noise are the ones that measure flow, not estimation.</p>
+
+  <p>Cycle time is the place to start. How long does a ticket take to move from in-progress to done? Break that down further: coding time, review time, time waiting for feedback. These numbers will start showing the impact of AI in ways that story points won't. You'll see coding time compress. Review cycles shorten. The shape of how work moves through your system will change.</p>
+
+  <p>DORA metrics sit in the same category. Deployment frequency, lead time for changes, change failure rate. These are the indicators that tell you whether AI is genuinely improving how your team delivers, or just changing how you count the work.</p>
+
+  <p>I'll be going deeper on each of these in the next post. How they get impacted, how to measure them in practice, and what to do when the numbers don't move the way you expect.</p>
+
+  <p>For now: if your velocity looks strange, don't panic. You're probably just holding a torch in a room that used to be dark. The task hasn't changed. Your capability has.</p>
+
+  <div class="ornament">· · ·</div>
+
+  <p style="color: var(--ink-muted); font-size: 16px; font-style: italic;">Danister is an Engineering Manager at Edenred UAE, leading a tribe of 12 engineers across fintech products. He writes about engineering leadership, AI adoption, and building high-performing teams.</p>
+
+</div>
+<div style="max-width:680px;margin:0 auto;padding:40px 32px 60px;border-top:1px solid #e8e8e8;margin-top:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;">
+  <a href="index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#0f0f0f;text-decoration:none;">Danister.</a>
+  <a href="index.html#writing" style="font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#717171;text-decoration:none;display:inline-flex;align-items:center;gap:6px;" onmouseover="this.style.color='#0f0f0f'" onmouseout="this.style.color='#717171'">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to portfolio
+  </a>
+</div>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
+
+</body>
+</html>
